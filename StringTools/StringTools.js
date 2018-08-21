@@ -9,8 +9,7 @@
     };
 
     ext.contains = function(sentence, word) {
-        var array = sentence.toString().split(' ');
-        return array.contains(word.toString());
+        return sentence.toString().split(' ').includes(word.toString());
     }
 
     // Block and block menu descriptions
