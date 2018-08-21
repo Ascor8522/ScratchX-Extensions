@@ -66,7 +66,7 @@
             ['b','sentence %s contains word %s','contains', 'I love Scratch', 'love'],
             ['r', 'index of word %s in the sentence %s', 'find' ,'a', 'a b c d e f'],
             ['r', 'index of char %s in the string %s', 'find' ,'h', 'woohoo!'],
-            ['r', 'format %s %s.formatFomat', 'format', 'hello']
+            ['r', 'format %s %s.formatFomat', 'format', 'hello', '1st letter uppercase']
         ],
         menus:{
             formatFomat:['all lowercase', 'all uppercase', '1st letter uppercase']
