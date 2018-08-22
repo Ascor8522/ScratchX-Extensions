@@ -53,19 +53,13 @@
                 return text.toString().toLowerCase();
             case 'all uppercase':
                 return text.toString().toUpperCase();
-            case '1st letter uppercase':
+            case '1st uppercase':
                 return text.toString().slice(0,1).toUpperCase() + text.toString().slice(1);
+            case '1st uppercase, others lowercase':
+                return text.toString().slice(0,1).toUpperCase() + text.toString().toLowerCase().slice(1);
             default:
                 return text.toString();
         }
-    }
-
-    /**
-     * Returs the lowercase version of the input string
-     * @param {string} string a string to put lowercase
-     */
-    ext.lowercase = function(string) {
-        return string.toString().toLowerCase();
     }
 
     /**
@@ -91,19 +85,35 @@
         return string.toString().split('').reverse().join('');
     } 
 
+    /**
+     * Returns a substring of the provided string
+     * @param {string} string a string
+     * @param {number} start the index of the first letter to include into the substring
+     * @param {number} end the index of the last letter to include into the substring
+     * If no start number is provided, start will be set at char 0 (1 for the kids)
+     * If no end number is provided, substring will be extracted to the end of the provided string
+     */
+    ext.substring = function(string, start, end) {
+        var strStart = start;
+        var strEnd = end;
+        if (strStart.toString().length = 0) { strStart = 0; }
+        if (strEnd.toString().length = 0) { strEnd = string.toString().length - 1; }
+        return string.toString().substring(Number.parseInt(strStart) - 1, Number.parseInt(strEnd));
+    }
+
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
             ['b','sentence %s contains word %s','contains', 'I love Scratch', 'love'],
-            ['r', 'index of word %s in the sentence %s', 'find' ,'a', 'a b c d e f'],
-            ['r', 'index of char %s in the string %s', 'find' ,'h', 'woohoo!'],
-            ['r', 'format %s %m.formatFomat', 'format', 'hello', '1st letter uppercase'],
-            ['r', '%s to lowercase', 'lowercase', 'SCRATCH'],
+            ['r', 'index of word %s in the sentence %s', 'find' ,'will', 'What will you create ?'],
+            ['r', 'index of char %s in the string %s', 'findChar' ,'h', 'Woohoo!'],
+            ['r', 'format %s %m.formatFomat', 'format', 'hello', '1st uppercase'],
             ['r', 'join %s %s %s with %s', 'join', 'Hello', 'world', '!', ' '],
-            ['r', 'reverse %s', 'Hello there']
+            ['r', 'reverse %s', 'reverse','Hello there'],
+            ['r', '%s from letter %n to %n', 'substring', 'Sun is shining', '5', '10']
         ],
         menus:{
-            formatFomat:['all lowercase', 'all uppercase', '1st letter uppercase']
+            formatFomat:['all lowercase', 'all uppercase', '1st uppercase', '1st uppercase, other lowercase']
         },
         displayName: 'Advanced String Operators'
     };
