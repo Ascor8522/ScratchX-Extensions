@@ -101,6 +101,19 @@
         return string.toString().substring(Number.parseInt(strStart) - 1, Number.parseInt(strEnd));
     }
 
+    ext.trim = function(string, format) {
+        switch(format) {
+            case 'at the beginning':
+                return string.toString().trimStart();
+            case 'at the end':
+            return string.toString().trimEnd();
+            case 'both':
+                return string.toString().trim();
+            default:
+                return string.toString();
+        }
+    }
+
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
@@ -110,10 +123,12 @@
             ['r', 'format %s %m.formatFomat', 'format', 'hello', '1st uppercase'],
             ['r', 'join %s %s %s with %s', 'join', 'Hello', 'world', '!', ' '],
             ['r', 'reverse %s', 'reverse','Hello there'],
-            ['r', '%s from letter %n to %n', 'substring', 'Sun is shining', '5', '10']
+            ['r', '%s from letter %n to %n', 'substring', 'Sun is shining', '5', '10'],
+            ['r', 'removes spaces %m.trimFormat of %s', '', '      hmmmmm...']
         ],
         menus:{
-            formatFomat:['all lowercase', 'all uppercase', '1st uppercase', '1st uppercase, other lowercase']
+            formatFomat:['all lowercase', 'all uppercase', '1st uppercase', '1st uppercase, others lowercase'],
+            trimFormat:['at the beginning', 'at the end', 'both']
         },
         displayName: 'Advanced String Operators'
     };
