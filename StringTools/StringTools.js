@@ -60,13 +60,22 @@
         }
     }
 
+    /**
+     * Returs the lowercase version of the input string
+     * @param {string} string a string to put lowercase
+     */
+    ext.lowercase = function(string) {
+        return string.toString().toLowerCase();
+    }
+
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
             ['b','sentence %s contains word %s','contains', 'I love Scratch', 'love'],
             ['r', 'index of word %s in the sentence %s', 'find' ,'a', 'a b c d e f'],
             ['r', 'index of char %s in the string %s', 'find' ,'h', 'woohoo!'],
-            ['r', 'format %s %m.formatFomat', 'format', 'hello', '1st letter uppercase']
+            ['r', 'format %s %m.formatFomat', 'format', 'hello', '1st letter uppercase'],
+            ['r', '%s to lowercase', 'lowercase', 'SCRATCH']
         ],
         menus:{
             formatFomat:['all lowercase', 'all uppercase', '1st letter uppercase']
