@@ -140,12 +140,12 @@
             ['r', 'reverse %s', 'reverse','Hello there'],
             ['r', '%s from letter %n to %n', 'substring', 'Sun is shining', '5', '10'],
             ['r', 'removes spaces %m.trimFormat of %s', 'at the beginning', '      hmmmmm...'],
-            ['r', 'replace %n.replaceOption %s in %s by %s', 'all', 'a', 'Abracadabra', 'O']
+            ['r', 'replace %m %s in %s by %s', 'all', 'a', 'Abracadabra', 'O']
         ],
         menus:{
             formatFomat:['all lowercase', 'all uppercase', '1st uppercase', '1st uppercase, others lowercase'],
             trimFormat:['at the beginning', 'at the end', 'both'],
-            replaceOption:['all', 'first', 'last']
+            replaceOption:['all', 'first', 'last', '%n']
         },
         displayName: 'Advanced String Operators'
     };
