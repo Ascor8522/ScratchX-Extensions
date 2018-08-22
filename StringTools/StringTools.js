@@ -38,7 +38,7 @@
      * Index begins at 1 and not at 0 (easier for the kids)
      */
     ext.findChar = function(char, string) {
-        return string.toString().indexOf(char) > -1 ? string.toString().indexOf(char) + 1 : -1;
+        return string.toString().indexOf(char.toString()) > -1 ? string.toString().indexOf(char.toString()) + 1 : -1;
     }
 
     /**
@@ -54,9 +54,9 @@
             case 'all uppercase':
                 return text.toString().toUpperCase();
             case '1st letter uppercase':
-                return text.slice(0,1).toUpperCase() + text.slice(1);
+                return text.toString().slice(0,1).toUpperCase() + text.toString().slice(1);
             default:
-                return text;
+                return text.toString();
         }
     }
 
@@ -83,6 +83,14 @@
         return str.join(joiner.toString());
     }
 
+    /**
+     * Returns the reversed string of the input string
+     * @param {string} string 
+     */
+    ext.reverse = function(string) {
+        return string.toString().split('').reverse().join('');
+    } 
+
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
@@ -91,7 +99,8 @@
             ['r', 'index of char %s in the string %s', 'find' ,'h', 'woohoo!'],
             ['r', 'format %s %m.formatFomat', 'format', 'hello', '1st letter uppercase'],
             ['r', '%s to lowercase', 'lowercase', 'SCRATCH'],
-            ['r', 'join %s %s %s with %s', 'join', 'Hello', 'world', '!', ' ']
+            ['r', 'join %s %s %s with %s', 'join', 'Hello', 'world', '!', ' '],
+            ['r', 'reverse %s', 'Hello there']
         ],
         menus:{
             formatFomat:['all lowercase', 'all uppercase', '1st letter uppercase']
