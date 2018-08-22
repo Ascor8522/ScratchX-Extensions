@@ -68,6 +68,21 @@
         return string.toString().toLowerCase();
     }
 
+    /**
+     * Joins multiple strings together with a joiner character or string inbetween
+     * @param {string} str1 first string
+     * @param {string} str2 second string
+     * @param {string} str3 third string
+     * @param {string} joiner the joining string or charactrer
+     */
+    ext.join = function(str1, str2, str3, joiner) {
+        var str = [];
+        if (str1.toString().length > 0) { str.push(str1.toString()) }
+        if (str2.toString().length > 0) { str.push(str2.toString()) }
+        if (str3.toString().length > 0) { str.push(str3.toString()) }
+        return str.join(joiner.toString());
+    }
+
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
@@ -75,7 +90,8 @@
             ['r', 'index of word %s in the sentence %s', 'find' ,'a', 'a b c d e f'],
             ['r', 'index of char %s in the string %s', 'find' ,'h', 'woohoo!'],
             ['r', 'format %s %m.formatFomat', 'format', 'hello', '1st letter uppercase'],
-            ['r', '%s to lowercase', 'lowercase', 'SCRATCH']
+            ['r', '%s to lowercase', 'lowercase', 'SCRATCH'],
+            ['r', 'join %s %s %s with %s', 'join', 'Hello', 'world', '!', ' ']
         ],
         menus:{
             formatFomat:['all lowercase', 'all uppercase', '1st letter uppercase']
