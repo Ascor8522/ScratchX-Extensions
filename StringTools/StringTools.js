@@ -101,6 +101,11 @@
         return string.toString().substring(Number.parseInt(strStart) - 1, Number.parseInt(strEnd));
     }
 
+    /**
+     * Removes whitespaces at the beginning, at the end or both of a give string
+     * @param {string} string the given string
+     * @param {string} format the trimming parameter
+    */
     ext.trim = function(string, format) {
         switch(format) {
             case 'at the beginning':
@@ -114,21 +119,33 @@
         }
     }
 
+    /**
+     * Replaces all occurences of a substring inside a string by another string
+     * @param {*} string the given string
+     * @param {*} before what has to be replaced
+     * @param {*} after the replacement tring
+     */
+    ext.replace = function(string, option, before, after) {
+        return string.toString().replace(before.toString(), after.toString());
+    }
+
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-            ['b','sentence %s contains word %s','contains', 'I love Scratch', 'love'],
+            ['b','%s contains word %s','contains', 'I love Scratch', 'love'],
             ['r', 'index of word %s in the sentence %s', 'find' ,'will', 'What will you create ?'],
-            ['r', 'index of char %s in the string %s', 'findChar' ,'h', 'Woohoo!'],
-            ['r', 'format %s %m.formatFomat', 'format', 'hello', '1st uppercase'],
+            ['r', 'index of character %s in the word %s', 'findChar' ,'h', 'Woohoo!'],
+            ['r', 'format %s with %m.formatFomat', 'format', 'hello', '1st uppercase'],
             ['r', 'join %s %s %s with %s', 'join', 'Hello', 'world', '!', ' '],
             ['r', 'reverse %s', 'reverse','Hello there'],
             ['r', '%s from letter %n to %n', 'substring', 'Sun is shining', '5', '10'],
-            ['r', 'removes spaces %m.trimFormat of %s', '', '      hmmmmm...']
+            ['r', 'removes spaces %m.trimFormat of %s', 'at the beginning', '      hmmmmm...'],
+            ['r', 'replace %n.replaceOption %s in %s by %s', 'all', 'a', 'Abracadabra', 'O']
         ],
         menus:{
             formatFomat:['all lowercase', 'all uppercase', '1st uppercase', '1st uppercase, others lowercase'],
-            trimFormat:['at the beginning', 'at the end', 'both']
+            trimFormat:['at the beginning', 'at the end', 'both'],
+            replaceOption:['all', 'first', 'last']
         },
         displayName: 'Advanced String Operators'
     };
