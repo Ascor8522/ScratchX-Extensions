@@ -19,7 +19,7 @@
      */
     ext.contains = function (sentence, word) {
         if (!sentence) return "";
-        if (!word) return true;
+        if (!word) return false;
         return sentence.toString().split(" ").includes(word.toString().replace(/^\s+|\s+$/gm, ""));
     }
 
@@ -51,7 +51,10 @@
      * @param {string} string a string that might contain the char
      * Index begins at 1 and not at 0 (easier for the kids)
      */
+    /* TODO add aa boolean for case sensitivity */
     ext.findChar = function (index, char, string) {
+        if (!chrar) return -1;
+        if (!string) return -1;
         switch (index) {
             case "first":
                 return string.toString().indexOf(char.toString()) > -1 ? string.toString().indexOf(char.toString()) + 1 : -1;
@@ -69,6 +72,7 @@
      * @param {string} format the selected format
      */
     ext.format = function (text, format) {
+        if (!text) return "";
         switch (format) {
             case "all lowercase":
                 return text.toString().toLowerCase();
@@ -91,6 +95,10 @@
      * @param {string} joiner the joining string or charactrer
      */
     ext.join = function (str1, str2, str3, joiner) {
+        if (!str1) str1 = "";
+        if (!str2) str2 = "";
+        if (!str3) str3 = "";
+        if (!joiner) joiner = "";
         var str = [];
         if (str1.toString().length > 0) {
             str.push(str1.toString())
@@ -109,6 +117,7 @@
      * @param {string} string the string to reverse
      */
     ext.reverse = function (string) {
+        if (!string) string = "";
         return string.toString().split("").reverse().join("");
     }
 
@@ -121,6 +130,9 @@
      * If no end number is provided, substring will be extracted to the end of the provided string
      */
     ext.substring = function (string, start, end) {
+        if (!string) string = "";
+        if (!start) start = 0;
+        if (!end) end = 0;
         var strStart = start;
         var strEnd = end;
         if (strStart.toString().length = 0) {
@@ -138,6 +150,7 @@
      * @param {string} format the trimming parameter
      */
     ext.trim = function (string, format) {
+        if (!string) string = "";
         switch (format) {
             case "at the beginning":
                 return string.toString().trimStart();
@@ -152,27 +165,15 @@
 
     /**
      * Replaces all occurences of a substring inside a string by another string
-     * @param {string} option the option of what to replace
-     * @param {string} string the given string
-     * @param {string} before what has to be replaced
-     * @param {string} after the replacement tring
-     */
-    ext.replace = function (option, string, before, after) {
-        if (!option) option = 0
-        if (!string) return "";
-        if (!before) return string.toString();
-        if (!after) after = "";
-        /* TODO */
-    }
-
-    /**
-     * Replaces all occurences of a substring inside a string by another string
      * @param {number} number which occurence to replace
      * @param {string} string the given string
      * @param {string} before what has to be replaced
      * @param {string} after the replacement tring
      */
     ext.replace = function (option, string, before, after) {
+        if (!string) string = "";
+        if (!before) before = "";
+        if (!after) after = "";
         switch (option) {
             case "all":
                 return string.toString().split(before.toString()).join(after.toString());
@@ -185,6 +186,21 @@
         }
     }
 
+    /**
+     * Replaces all occurences of a substring inside a string by another string
+     * @param {string} option the option of what to replace
+     * @param {string} string the given string
+     * @param {string} before what has to be replaced
+     * @param {string} after the replacement tring
+     */
+    ext.replace = function (option, string, before, after) {
+        if (!option) option = 0;
+        if (!string) string = "";
+        if (!before) before = "";
+        if (!after) after = "";
+        /* TODO */
+    }
+
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
@@ -192,7 +208,7 @@
             ["r", "index of %m.findIndex word %s in the sentence %s", "find", "first", "will", "What will you create ?"],
             ["r", "index of %m.findCharIndex character %s in the word %s", "findChar", "first", "h", "Woohoo!"],
             ["r", "format %s with %m.formatFomat", "format", "hello", "all uppercase"],
-            ["r", "join %s %s %s with %s", "join", "Hello", "world", "!", " "],
+            ["r", "join %s %s %s with %s", "join", "Hello", "world", "!", "_"],
             ["r", "reverse %s", "reverse", "Hello there"],
             ["r", "%s from letter %n to %n", "substring", "Sun is shining", "5", "10"],
             ["r", "removes spaces %m.trimFormat of %s", "at the beginning", "      hmmmmm..."],
