@@ -193,7 +193,7 @@
      * @param {string} before what has to be replaced
      * @param {string} after the replacement tring
      */
-    ext.replace = function (option, string, before, after) {
+    ext.replacePlace = function (option, string, before, after) {
         if (!option) option = 0;
         if (!string) string = "";
         if (!before) before = "";
@@ -211,9 +211,9 @@
             ["r", "join %s %s %s with %s", "join", "Hello", "world", "!", "_"],
             ["r", "reverse %s", "reverse", "Hello there"],
             ["r", "%s from letter %n to %n", "substring", "Sun is shining", "5", "10"],
-            ["r", "removes spaces %m.trimFormat of %s", "at the beginning", "      hmmmmm..."],
+            ["r", "removes spaces %m.trimFormat of %s", "trim", "at the beginning", "      hmmmmm..."],
             ["r", "replace %m.replaceOption %s in %s by %s", "replace", "all", "a", "Abracadabra", "o"],
-            ["r", "replace the %n nd %s in %s by %s", "3", "a", "replace2", "Abracadabra", "o"]
+            ["r", "replace the %n nd %s in %s by %s", "replacePlace", "3", "very", "What a very very very beautifull day!", "not"]
         ],
         menus: {
             findIndex: ["first", "last"],
