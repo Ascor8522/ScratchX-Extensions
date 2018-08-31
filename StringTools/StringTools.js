@@ -2,12 +2,15 @@
 
 (function (ext) {
     // Cleanup function when the extension is unloaded
-    ext._shutdown = function () { };
+    ext._shutdown = function () {};
 
     // Status reporting code
     // Use this to report missing hardware, plugin or unsupported browser
     ext._getStatus = function () {
-        return { status: 2, msg: "Ready" };
+        return {
+            status: 2,
+            msg: "Ready"
+        };
     };
 
     /**
@@ -17,6 +20,8 @@
      * Trailing spaces are removed from the word
      */
     ext.contains = function (sentence, word) {
+        if (!sentence) return "";
+        if (!word) return true;
         return sentence.toString().split(" ").includes(word.toString().replace(/^\s+|\s+$/gm, ""));
     }
 
@@ -89,9 +94,15 @@
      */
     ext.join = function (str1, str2, str3, joiner) {
         var str = [];
-        if (str1.toString().length > 0) { str.push(str1.toString()) }
-        if (str2.toString().length > 0) { str.push(str2.toString()) }
-        if (str3.toString().length > 0) { str.push(str3.toString()) }
+        if (str1.toString().length > 0) {
+            str.push(str1.toString())
+        }
+        if (str2.toString().length > 0) {
+            str.push(str2.toString())
+        }
+        if (str3.toString().length > 0) {
+            str.push(str3.toString())
+        }
         return str.join(joiner.toString());
     }
 
@@ -114,8 +125,12 @@
     ext.substring = function (string, start, end) {
         var strStart = start;
         var strEnd = end;
-        if (strStart.toString().length = 0) { strStart = 0; }
-        if (strEnd.toString().length = 0) { strEnd = string.toString().length - 1; }
+        if (strStart.toString().length = 0) {
+            strStart = 0;
+        }
+        if (strEnd.toString().length = 0) {
+            strEnd = string.toString().length - 1;
+        }
         return string.toString().substring(Number.parseInt(strStart) - 1, Number.parseInt(strEnd));
     }
 
@@ -123,7 +138,7 @@
      * Removes whitespaces at the beginning, at the end or both of a give string
      * @param {string} string the given string
      * @param {string} format the trimming parameter
-    */
+     */
     ext.trim = function (string, format) {
         switch (format) {
             case "at the beginning":
@@ -139,12 +154,28 @@
 
     /**
      * Replaces all occurences of a substring inside a string by another string
+     * @param {string} option the option of what to replace
      * @param {string} string the given string
      * @param {string} before what has to be replaced
      * @param {string} after the replacement tring
      */
     ext.replace = function (option, string, before, after) {
-        switch(option) {
+        if (!option) option = 0
+        if (!string) return "";
+        if (!before) return string.toString();
+        if (!after) after = "";
+        /* TODO */
+    }
+
+    /**
+     * Replaces all occurences of a substring inside a string by another string
+     * @param {number} number which occurence to replace
+     * @param {string} string the given string
+     * @param {string} before what has to be replaced
+     * @param {string} after the replacement tring
+     */
+    ext.replace = function (option, string, before, after) {
+        switch (option) {
             case "all":
                 return string.toString().split(before.toString()).join(after.toString());
             case "first":
@@ -152,7 +183,7 @@
             case "last":
 
             default:
-            return string.toString();
+                return string.toString();
         }
     }
 
@@ -167,7 +198,8 @@
             ["r", "reverse %s", "reverse", "Hello there"],
             ["r", "%s from letter %n to %n", "substring", "Sun is shining", "5", "10"],
             ["r", "removes spaces %m.trimFormat of %s", "at the beginning", "      hmmmmm..."],
-            ["r", "replace %m.replaceOption %s in %s by %s", "all", "a", "Abracadabra", "o"]
+            ["r", "replace %m.replaceOption %s in %s by %s", "replace", "all", "a", "Abracadabra", "o"],
+            ["r", "replace the %n nd %s in %s by %s", "3", "a", "replace2", "Abracadabra", "o"]
         ],
         menus: {
             findIndex: ["first", "last"],
