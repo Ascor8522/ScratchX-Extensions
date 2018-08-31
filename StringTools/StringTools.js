@@ -170,7 +170,7 @@
      * @param {string} before what has to be replaced
      * @param {string} after the replacement tring
      */
-    ext.replace = function (option, string, before, after) {
+    ext.replace = function (option, before, string, after) {
         if (!string) string = "";
         if (!before) before = "";
         if (!after) after = "";
@@ -193,7 +193,7 @@
      * @param {string} before what has to be replaced
      * @param {string} after the replacement tring
      */
-    ext.replacePlace = function (option, string, before, after) {
+    ext.replacePlace = function (option, before, string, after) {
         if (!option) option = 0;
         if (!string) string = "";
         if (!before) before = "";
