@@ -1,6 +1,8 @@
 # ScratchX-Extensions
 A repo where I put all my custom ScratchX Extensions
 
+## Documentation
+https://github.com/LLK/scratchx/wiki
 
 ## Website
 https://smrman.github.io/ScratchX-Extensions/

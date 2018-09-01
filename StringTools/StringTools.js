@@ -18,7 +18,7 @@
      * Trailing spaces are removed from the word
      */
     ext.contains = function (sentence, word) {
-        if (!sentence) return "";
+        if (!sentence) sentence = "";
         if (!word) return false;
         return sentence.toString().split(" ").includes(word.toString().replace(/^\s+|\s+$/gm, ""));
     }
@@ -53,7 +53,7 @@
      */
     /* TODO add aa boolean for case sensitivity */
     ext.findChar = function (index, char, string) {
-        if (!chrar) return -1;
+        if (!char) return -1;
         if (!string) return -1;
         switch (index) {
             case "first":
@@ -165,9 +165,9 @@
 
     /**
      * Replaces all occurences of a substring inside a string by another string
-     * @param {number} number which occurence to replace
-     * @param {string} string the given string
+     * @param {string} option which occurence to replace
      * @param {string} before what has to be replaced
+     * @param {string} string the given string
      * @param {string} after the replacement tring
      */
     ext.replace = function (option, before, string, after) {
@@ -188,16 +188,23 @@
 
     /**
      * Replaces all occurences of a substring inside a string by another string
-     * @param {string} option the option of what to replace
-     * @param {string} string the given string
+     * @param {number} place the option of what to replace
      * @param {string} before what has to be replaced
+     * @param {string} string the given string
      * @param {string} after the replacement tring
      */
-    ext.replacePlace = function (option, before, string, after) {
-        if (!option) option = 0;
+    ext.replacePlace = function (place, before, string, after) {
+        if (!place) place = 0;
         if (!string) string = "";
         if (!before) before = "";
         if (!after) after = "";
+        var regex = new RegExp(before, "g");
+        var counter = 0;
+        return string.replace(regex, function (match, i, original) {
+            counter++;
+            return (counter === place) ? after : match;
+        });
+
         /* TODO */
     }
 
@@ -213,7 +220,7 @@
             ["r", "%s from letter %n to %n", "substring", "Sun is shining", "5", "10"],
             ["r", "removes spaces %m.trimFormat of %s", "trim", "at the beginning", "      hmmmmm..."],
             ["r", "replace %m.replaceOption %s in %s by %s", "replace", "all", "a", "Abracadabra", "o"],
-            ["r", "replace the %n nd %s in %s by %s", "replacePlace", "3", "very", "What a very very very beautifull day!", "not"]
+            ["R", "replace the %n nd %s in %s by %s", "replacePlace", "3", "very", "What a very very very beautifull day!", "not"]
         ],
         menus: {
             findIndex: ["first", "last"],
