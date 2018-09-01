@@ -230,7 +230,7 @@
         if(!times) times = 0;
         if(!joiner) joiner = "";
         var buffer = "";
-        for(var i = 0; i < times; i++) {
+        for(var i = 1; i < times; i++) {
             buffer += string.toString() + joiner.toString(); 
         }
         buffer += string.toString();
