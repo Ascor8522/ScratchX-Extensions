@@ -233,7 +233,7 @@
         for(var i = 0; i < times; i++) {
             buffer += string.toString() + joiner.toString(); 
         }
-        buffer += buffer + string.toString();
+        buffer += string.toString();
         return buffer.toString();
     }
 
