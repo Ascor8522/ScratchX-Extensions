@@ -198,11 +198,11 @@
         if (!string) string = "";
         if (!before) before = "";
         if (!after) after = "";
-        var regex = new RegExp(before, "g");
+        var regex = new RegExp(before.toString(), "g");
         var counter = 0;
         return string.replace(regex, function (match, i, original) {
             counter++;
-            return (counter === place) ? after : match;
+            return (counter === Number.parseInt(place)) ? after.toString() : match;
         });
     }
 
@@ -218,6 +218,25 @@
         return string.split(char).join(" ");
     }
 
+    /**
+     * Repeats a string n times
+     * Every occurence is separated by a joiner
+     * @param {string} string the string to repeat
+     * @param {number} times how many times to repeat the string
+     * @param {string} joiner the string that join the repeats
+     */
+    ext.repeat = function(string, times, joiner) {
+        if(!string) string = "";
+        if(!times) times = 0;
+        if(!joiner) joiner = "";
+        var buffer = "";
+        for(var i = 0; i < times; i++) {
+            buffer += string.toString() + joiner.toString(); 
+        }
+        buffer += buffer + string.toString();
+        return buffer.toString();
+    }
+
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
@@ -230,7 +249,8 @@
             ["r", "%s from letter %n to %n", "substring", "Sun is shining", "5", "10"],
             ["r", "removes spaces %m.trimFormat of %s", "trim", "at the beginning", "      hmmmmm..."],
             ["r", "replace %m.replaceOption %s in %s by %s", "replace", "all", "a", "Abracadabra", "o"],
-            ["r", "replace the %n nd %s in %s by %s", "replacePlace", "3", "very", "What a very very very beautifull day!", "not"]
+            ["r", "replace the %n th %s in %s by %s", "replacePlace", "3", "very", "What a very very very beautifull day!", "not"],
+            ["r", "repeat %s %n times separated by %s", "repeat", "Hello", "3", "-"]
         ],
         menus: {
             findIndex: ["first", "last"],
