@@ -149,7 +149,7 @@
      * @param {string} string the given string
      * @param {string} format the trimming parameter
      */
-    ext.trim = function (string, format) {
+    ext.trim = function (format, string) {
         if (!string) string = "";
         switch (format) {
             case "at the beginning":
@@ -204,8 +204,18 @@
             counter++;
             return (counter === place) ? after : match;
         });
+    }
 
-        /* TODO */
+    /**
+     * Split a string every char/string and report it joined all together with spaces
+     * (like for lists in Scratch)
+     * @param {string} string the base string
+     * @param {string} char where to split in the string
+     */
+    ext.split = function(string, char) {
+        if(!string) string = "";
+        if(!char) char = "";
+        return string.split(char).join(" ");
     }
 
     // Block and block menu descriptions
@@ -220,7 +230,7 @@
             ["r", "%s from letter %n to %n", "substring", "Sun is shining", "5", "10"],
             ["r", "removes spaces %m.trimFormat of %s", "trim", "at the beginning", "      hmmmmm..."],
             ["r", "replace %m.replaceOption %s in %s by %s", "replace", "all", "a", "Abracadabra", "o"],
-            ["R", "replace the %n nd %s in %s by %s", "replacePlace", "3", "very", "What a very very very beautifull day!", "not"]
+            ["r", "replace the %n nd %s in %s by %s", "replacePlace", "3", "very", "What a very very very beautifull day!", "not"]
         ],
         menus: {
             findIndex: ["first", "last"],
