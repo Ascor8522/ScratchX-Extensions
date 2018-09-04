@@ -19,8 +19,19 @@
      */
     ext.contains = function (sentence, word) {
         if (!sentence) sentence = "";
-        if (!word) return false;
+        if (!word || word == "") return false;
         return sentence.toString().split(" ").includes(word.toString().replace(/^\s+|\s+$/gm, ""));
+    }
+
+    /**
+     * Checks if a string begins with a substring
+     * @param {string} string the main string
+     * @param {substring} substring the substring to check
+     */
+    ext.beginsWith = function (string, substring) {
+        if (!string) string = "";
+        if(!substring || substring ==  "") return false;
+        return 
     }
 
     /**
@@ -53,8 +64,8 @@
      */
     /* TODO add aa boolean for case sensitivity */
     ext.findChar = function (index, char, string) {
-        if (!char) return -1;
-        if (!string) return -1;
+        if (!char || char == "") return -1;
+        if (!string || string == "") return -1;
         switch (index) {
             case "first":
                 return string.toString().indexOf(char.toString()) > -1 ? string.toString().indexOf(char.toString()) + 1 : -1;
@@ -230,11 +241,22 @@
         if(!times) times = 0;
         if(!joiner) joiner = "";
         var buffer = "";
-        for(var i = 1; i < times; i++) {
-            buffer += string.toString() + joiner.toString(); 
+        for(var i = 1; i < Number.parseInt(times); i++) {
+            buffer = buffer + string.toString() + joiner.toString(); 
         }
-        buffer += string.toString();
+        buffer = buffer + string.toString();
         return buffer.toString();
+    }
+
+    /**
+     * Returns true weather a string starts with a certain pattern
+     * @param {string} string The string that might start with the pattern.
+     * @param {string} pattern The pattern the string might start with.
+     */
+    ext.startsWith = function(string, pattern) {
+        if(!string) string = "";
+        if(!pattern || pattern == "") return false;
+        return string.toString().startsWith(pattern.toString());
     }
 
     // Block and block menu descriptions
@@ -250,7 +272,8 @@
             ["r", "removes spaces %m.trimFormat of %s", "trim", "at the beginning", "      hmmmmm..."],
             ["r", "replace %m.replaceOption %s in %s by %s", "replace", "all", "a", "Abracadabra", "o"],
             ["r", "replace the %n th %s in %s by %s", "replacePlace", "3", "very", "What a very very very beautifull day!", "not"],
-            ["r", "repeat %s %n times separated by %s", "repeat", "Hello", "3", "-"]
+            ["r", "repeat %s %n times separated by %s", "repeat", "Hello", "3", "-"],
+            ["b", "%s begins with %s", "startsWith", "Scratchatastic", "Scratch"]
         ],
         menus: {
             findIndex: ["first", "last"],
