@@ -12,10 +12,10 @@
     };
 
     /**
-     * Returns weather a sentence contains a word
-     * @param {string} sentence a sentence that might contain the word
-     * @param {string} word a word that might be contained in the sentence
-     * Trailing spaces are removed from the word
+     * Returns whether a sentence contains a word.
+     * @param {string} sentence A sentence that might contain the word.
+     * @param {string} word A word that might be contained in the sentence.
+     * Trailing spaces are removed from the word.
      */
     ext.contains = function (sentence, word) {
         if (!sentence) sentence = "";
@@ -24,9 +24,9 @@
     }
 
     /**
-     * Checks if a string begins with a substring
-     * @param {string} string the main string
-     * @param {substring} substring the substring to check
+     * Checks if a string begins with a substring.
+     * @param {string} string The main string.
+     * @param {substring} substring The substring to check.
      */
     ext.beginsWith = function (string, substring) {
         if (!string) string = "";
@@ -35,13 +35,13 @@
     }
 
     /**
-     * Returns the index of a word in the sentence
-     * Returns -1 if the word doesn't appear in the sentence
-     * @param {string} index the first or last word
-     * @param {string} sentence a sentence that might contain the word
-     * @param {string} word a word we want to know the index of
-     * Trailing spaces are removed from the word
-     * Index begins at 1 and not at 0 (easier for the kids)
+     * Returns the index of a word in the sentence.
+     * Returns -1 if the word doesn't appear in the sentence.
+     * @param {string} index The first or last word.
+     * @param {string} sentence A sentence that might contain the word.
+     * @param {string} word A word we want to know the index of.
+     * Trailing spaces are removed from the word.
+     * Index begins at 1 and not at 0 (easier for the kids).
      */
     ext.find = function (index, word, sentence) {
         switch (index) {
@@ -55,14 +55,13 @@
     }
 
     /**
-     * Returns the index of a char in the string
-     * Returns -1 if the char doesn't appear in the string
-     * @param {string} index the first or last char
-     * @param {char} char a char we want to know the index of
-     * @param {string} string a string that might contain the char
-     * Index begins at 1 and not at 0 (easier for the kids)
+     * Returns the index of a char in the string.
+     * Returns -1 if the char doesn't appear in the string.
+     * @param {string} index The first or last char
+     * @param {char} char A char we want to know the index of.
+     * @param {string} string A string that might contain the char.
+     * Index begins at 1 and not at 0 (easier for the kids).
      */
-    /* TODO add aa boolean for case sensitivity */
     ext.findChar = function (index, char, string) {
         if (!char || char == "") return -1;
         if (!string || string == "") return -1;
@@ -77,10 +76,10 @@
     }
 
     /**
-     * Format the text depending on the format parameter
-     * Text can be all lowercase, all uppercase or with the first letter uppercase
-     * @param {string} text the text to format
-     * @param {string} format the selected format
+     * Format the text depending on the format parameter.
+     * Text can be all lowercase, all uppercase or with the first letter uppercase.
+     * @param {string} text The text to format.
+     * @param {string} format The selected format.
      */
     ext.format = function (text, format) {
         if (!text) return "";
@@ -99,11 +98,11 @@
     }
 
     /**
-     * Joins multiple strings together with a joiner character or string inbetween
-     * @param {string} str1 first string
-     * @param {string} str2 second string
-     * @param {string} str3 third string
-     * @param {string} joiner the joining string or charactrer
+     * Joins multiple strings together with a joiner character or string inbetween.
+     * @param {string} str1 First string.
+     * @param {string} str2 Second string.
+     * @param {string} str3 Third string.
+     * @param {string} joiner The joining string or charactrer.
      */
     ext.join = function (str1, str2, str3, joiner) {
         if (!str1) str1 = "";
@@ -124,8 +123,8 @@
     }
 
     /**
-     * Returns the reversed string of the input string
-     * @param {string} string the string to reverse
+     * Returns the reversed string of the input string.
+     * @param {string} string the string to reverse.
      */
     ext.reverse = function (string) {
         if (!string) string = "";
@@ -133,12 +132,12 @@
     }
 
     /**
-     * Returns a substring of the provided string
-     * @param {string} string a string
-     * @param {number} start the index of the first letter to include into the substring
-     * @param {number} end the index of the last letter to include into the substring
-     * If no start number is provided, start will be set at char 0 (1 for the kids)
-     * If no end number is provided, substring will be extracted to the end of the provided string
+     * Returns a substring of the provided string.
+     * @param {string} string A string.
+     * @param {number} start The index of the first letter to include into the substring.
+     * @param {number} end The index of the last letter to include into the substring.
+     * If no start number is provided, start will be set at char 0 (1 for the kids).
+     * If no end number is provided, substring will be extracted to the end of the provided string.
      */
     ext.substring = function (string, start, end) {
         if (!string) string = "";
@@ -156,9 +155,9 @@
     }
 
     /**
-     * Removes whitespaces at the beginning, at the end or both of a give string
-     * @param {string} string the given string
-     * @param {string} format the trimming parameter
+     * Removes whitespaces at the beginning, at the end or both of a give string.
+     * @param {string} string The given string.
+     * @param {string} format The trimming parameter.
      */
     ext.trim = function (format, string) {
         if (!string) string = "";
@@ -175,11 +174,11 @@
     }
 
     /**
-     * Replaces all occurences of a substring inside a string by another string
-     * @param {string} option which occurence to replace
-     * @param {string} before what has to be replaced
-     * @param {string} string the given string
-     * @param {string} after the replacement tring
+     * Replaces all occurences of a substring inside a string by another string.
+     * @param {string} option Which occurence to replace.
+     * @param {string} before What has to be replaced.
+     * @param {string} string The given string.
+     * @param {string} after The replacement tring.
      */
     ext.replace = function (option, before, string, after) {
         if (!string) string = "";
@@ -198,11 +197,11 @@
     }
 
     /**
-     * Replaces all occurences of a substring inside a string by another string
-     * @param {number} place the option of what to replace
-     * @param {string} before what has to be replaced
-     * @param {string} string the given string
-     * @param {string} after the replacement tring
+     * Replaces all occurences of a substring inside a string by another string.
+     * @param {number} place The option of what to replace.
+     * @param {string} before What has to be replaced.
+     * @param {string} string The given string.
+     * @param {string} after The replacement tring.
      */
     ext.replacePlace = function (place, before, string, after) {
         if (!place) place = 0;
@@ -218,10 +217,10 @@
     }
 
     /**
-     * Split a string every char/string and report it joined all together with spaces
-     * (like for lists in Scratch)
-     * @param {string} string the base string
-     * @param {string} char where to split in the string
+     * Split a string every char/string and report it joined all together with spaces.
+     * (like for lists in Scratch).
+     * @param {string} string The base string.
+     * @param {string} char Where to split in the string.
      */
     ext.split = function(string, char) {
         if(!string) string = "";
@@ -230,11 +229,11 @@
     }
 
     /**
-     * Repeats a string n times
-     * Every occurence is separated by a joiner
-     * @param {string} string the string to repeat
-     * @param {number} times how many times to repeat the string
-     * @param {string} joiner the string that join the repeats
+     * Repeats a string n times.
+     * Every occurence is separated by a joiner.
+     * @param {string} string The string to repeat.
+     * @param {number} times How many times to repeat the string.
+     * @param {string} joiner The string that join the repeats.
      */
     ext.repeat = function(string, times, joiner) {
         if(!string) string = "";
@@ -249,7 +248,7 @@
     }
 
     /**
-     * Returns true weather a string starts with a certain pattern
+     * Returns true whether a string starts with a certain pattern.
      * @param {string} string The string that might start with the pattern.
      * @param {string} pattern The pattern the string might start with.
      */
@@ -257,6 +256,17 @@
         if(!string) string = "";
         if(!pattern || pattern == "") return false;
         return string.toString().startsWith(pattern.toString());
+    }
+
+    /**
+     * Returns true whether a string ends with a certain pattern.
+     * @param {string} string The string that might end with the pattern.
+     * @param {string} pattern The pattern the string might end with.
+     */
+    ext.endsWith = function(string, pattern) {
+        if(!string) string = "";
+        if(!pattern || pattern == "") return false;
+        return string.toString().endsWith(pattern.toString());
     }
 
     // Block and block menu descriptions
