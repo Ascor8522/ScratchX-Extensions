@@ -269,6 +269,17 @@
         return string.toString().endsWith(pattern.toString());
     }
 
+    /**
+     * Returns true whether the first string is equal to the second string (case sensitive).
+     * @param {string} string1 The first string.
+     * @param {string} string2 The second string.
+     */
+    ext.equals = function (string1, string2) {
+        if (!string1) string1 = "";
+        if (!string2) string2 = "";
+        return (string1 === string2);
+    } 
+
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
@@ -284,7 +295,8 @@
             ["r", "replace the %n th %s in %s by %s", "replacePlace", "3", "very", "What a very very very beautifull day!", "not"],
             ["r", "repeat %s %n times separated by %s", "repeat", "Hello", "3", "-"],
             ["b", "%s begins with %s", "startsWith", "Scratchatastic", "Scratch"],
-            ["b", "%s ends with %s", "endsWith", "Is this a question?", "?"]
+            ["b", "%s ends with %s", "endsWith", "Is this a question?", "?"],
+            ["b", "%s = %s", "equals", "This sentence", "this sentence"]
         ],
         menus: {
             findIndex: ["first", "last"],
