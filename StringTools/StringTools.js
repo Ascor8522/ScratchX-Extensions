@@ -30,8 +30,8 @@
      */
     ext.beginsWith = function (string, substring) {
         if (!string) string = "";
-        if(!substring || substring ==  "") return false;
-        return 
+        if (!substring || substring == "") return false;
+        return
     }
 
     /**
@@ -222,9 +222,9 @@
      * @param {string} string The base string.
      * @param {string} char Where to split in the string.
      */
-    ext.split = function(string, char) {
-        if(!string) string = "";
-        if(!char) char = "";
+    ext.split = function (string, char) {
+        if (!string) string = "";
+        if (!char) char = "";
         return string.split(char).join(" ");
     }
 
@@ -235,13 +235,13 @@
      * @param {number} times How many times to repeat the string.
      * @param {string} joiner The string that join the repeats.
      */
-    ext.repeat = function(string, times, joiner) {
-        if(!string) string = "";
-        if(!times) times = 0;
-        if(!joiner) joiner = "";
+    ext.repeat = function (string, times, joiner) {
+        if (!string) string = "";
+        if (!times) times = 0;
+        if (!joiner) joiner = "";
         var buffer = "";
-        for(var i = 1; i < Number.parseInt(times); i++) {
-            buffer = buffer + string.toString() + joiner.toString(); 
+        for (var i = 1; i < Number.parseInt(times); i++) {
+            buffer = buffer + string.toString() + joiner.toString();
         }
         buffer = buffer + string.toString();
         return buffer.toString();
@@ -252,9 +252,9 @@
      * @param {string} string The string that might start with the pattern.
      * @param {string} pattern The pattern the string might start with.
      */
-    ext.startsWith = function(string, pattern) {
-        if(!string) string = "";
-        if(!pattern || pattern == "") return false;
+    ext.startsWith = function (string, pattern) {
+        if (!string) string = "";
+        if (!pattern || pattern == "") return false;
         return string.toString().startsWith(pattern.toString());
     }
 
@@ -263,9 +263,9 @@
      * @param {string} string The string that might end with the pattern.
      * @param {string} pattern The pattern the string might end with.
      */
-    ext.endsWith = function(string, pattern) {
-        if(!string) string = "";
-        if(!pattern || pattern == "") return false;
+    ext.endsWith = function (string, pattern) {
+        if (!string) string = "";
+        if (!pattern || pattern == "") return false;
         return string.toString().endsWith(pattern.toString());
     }
 
@@ -283,7 +283,8 @@
             ["r", "replace %m.replaceOption %s in %s by %s", "replace", "all", "a", "Abracadabra", "o"],
             ["r", "replace the %n th %s in %s by %s", "replacePlace", "3", "very", "What a very very very beautifull day!", "not"],
             ["r", "repeat %s %n times separated by %s", "repeat", "Hello", "3", "-"],
-            ["b", "%s begins with %s", "startsWith", "Scratchatastic", "Scratch"]
+            ["b", "%s begins with %s", "startsWith", "Scratchatastic", "Scratch"],
+            ["b", "%s ends with %s", "endsWith", "Is this a question?", "?"]
         ],
         menus: {
             findIndex: ["first", "last"],
