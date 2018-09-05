@@ -278,7 +278,28 @@
         if (!string1) string1 = "";
         if (!string2) string2 = "";
         return (string1 === string2);
-    } 
+    }
+
+    /**
+     * Converts a character or a string into a list of codes used for by the selected encoding system.
+     * @param {string} encoding 
+     * @param {string} char 
+     */
+    ext.charToCode = function (encoding, char) {
+        if(!char) return "";
+        var answer = [];
+        for(var thischar of char.toString().split("")) {
+            switch(encoding) {
+                case "ASCII":
+                    answer.push(thischar.charAt(0));
+                    break;
+                case "Unicode":
+                case "UTF-8":
+    
+            }
+        }
+        return answer.join(" ").toString();
+    }
 
     // Block and block menu descriptions
     var descriptor = {
@@ -296,14 +317,16 @@
             ["r", "repeat %s %n times separated by %s", "repeat", "Hello", "3", "-"],
             ["b", "%s begins with %s", "startsWith", "Scratchatastic", "Scratch"],
             ["b", "%s ends with %s", "endsWith", "Is this a question?", "?"],
-            ["b", "%s = %s", "equals", "This sentence", "this sentence"]
+            ["b", "%s = %s", "equals", "This sentence", "this sentence"],
+            ["r", "%m.encoding code of %s", "ASCII", "S"]
         ],
         menus: {
             findIndex: ["first", "last"],
             findCharIndex: ["first", "last"],
             formatFomat: ["all uppercase", "all lowercase", "1st uppercase", "1st uppercase, others lowercase"],
             trimFormat: ["at the beginning", "at the end", "both"],
-            replaceOption: ["all", "first", "last"]
+            replaceOption: ["all", "first", "last"],
+            encoding:["ASCII", "Unicode", "UTF-8", "UTF-16", "UTF-32", "ISO-8859", "ISO-8859-1 (Latin1)", ""]
         },
         displayName: "Advanced String Operators"
     };
