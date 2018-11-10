@@ -15,23 +15,13 @@
      * Returns whether a sentence contains a word.
      * @param {string} sentence A sentence that might contain the word.
      * @param {string} word A word that might be contained in the sentence.
+     * @param {boolean} matchCase If the the case match is enabled.
      * Trailing spaces are removed from the word.
      */
-    ext.contains = function (sentence, word) {
+    ext.contains = function (sentence, word, matchCase) {
         if (!sentence) sentence = "";
         if (!word || word == "") return false;
         return sentence.toString().split(" ").includes(word.toString().replace(/^\s+|\s+$/gm, ""));
-    }
-
-    /**
-     * Checks if a string begins with a substring.
-     * @param {string} string The main string.
-     * @param {substring} substring The substring to check.
-     */
-    ext.beginsWith = function (string, substring) {
-        if (!string) string = "";
-        if (!substring || substring == "") return false;
-        return
     }
 
     /**
@@ -40,10 +30,11 @@
      * @param {string} index The first or last word.
      * @param {string} sentence A sentence that might contain the word.
      * @param {string} word A word we want to know the index of.
+     * @param {boolean} matchCase If the the case match is enabled.
      * Trailing spaces are removed from the word.
      * Index begins at 1 and not at 0 (easier for the kids).
      */
-    ext.find = function (index, word, sentence) {
+    ext.find = function (index, word, sentence, matchCase) {
         switch (index) {
             case "first":
                 return sentence.toString().split(" ").includes(word.toString().replace(/^\s+|\s+$/gm, "")) ? sentence.toString().split(" ").indexOf(word.toString().replace(/^\s+|\s+$/gm, "")) + 1 : -1;
@@ -60,9 +51,10 @@
      * @param {string} index The first or last char
      * @param {char} char A char we want to know the index of.
      * @param {string} string A string that might contain the char.
+     * @param {boolean} matchCase If the the case match is enabled.
      * Index begins at 1 and not at 0 (easier for the kids).
      */
-    ext.findChar = function (index, char, string) {
+    ext.findChar = function (index, char, string, matchCase) {
         if (!char || char == "") return -1;
         if (!string || string == "") return -1;
         switch (index) {
@@ -179,8 +171,9 @@
      * @param {string} before What has to be replaced.
      * @param {string} string The given string.
      * @param {string} after The replacement tring.
+     * @param {boolean} matchCase If the the case match is enabled.
      */
-    ext.replace = function (option, before, string, after) {
+    ext.replace = function (option, before, string, after, matchCase) {
         if (!string) string = "";
         if (!before) before = "";
         if (!after) after = "";
@@ -202,8 +195,9 @@
      * @param {string} before What has to be replaced.
      * @param {string} string The given string.
      * @param {string} after The replacement tring.
+     * @param {boolean} matchCase If the the case match is enabled.
      */
-    ext.replacePlace = function (place, before, string, after) {
+    ext.replacePlace = function (place, before, string, after, matchCase) {
         if (!place) place = 0;
         if (!string) string = "";
         if (!before) before = "";
@@ -221,8 +215,9 @@
      * (like for lists in Scratch).
      * @param {string} string The base string.
      * @param {string} char Where to split in the string.
+     * @param {boolean} matchCase If the the case match is enabled.
      */
-    ext.split = function (string, char) {
+    ext.split = function (string, char, matchCase) {
         if (!string) string = "";
         if (!char) char = "";
         return string.split(char).join(" ");
@@ -251,8 +246,9 @@
      * Returns true whether a string starts with a certain pattern.
      * @param {string} string The string that might start with the pattern.
      * @param {string} pattern The pattern the string might start with.
+     * @param {boolean} matchCase If the the case match is enabled.
      */
-    ext.startsWith = function (string, pattern) {
+    ext.startsWith = function (string, pattern, matchCase) {
         if (!string) string = "";
         if (!pattern || pattern == "") return false;
         return string.toString().startsWith(pattern.toString());
@@ -262,8 +258,9 @@
      * Returns true whether a string ends with a certain pattern.
      * @param {string} string The string that might end with the pattern.
      * @param {string} pattern The pattern the string might end with.
+     * @param {boolean} matchCase If the the case match is enabled.
      */
-    ext.endsWith = function (string, pattern) {
+    ext.endsWith = function (string, pattern, matchCase) {
         if (!string) string = "";
         if (!pattern || pattern == "") return false;
         return string.toString().endsWith(pattern.toString());
@@ -273,8 +270,9 @@
      * Returns true whether the first string is equal to the second string (case sensitive).
      * @param {string} string1 The first string.
      * @param {string} string2 The second string.
+     * @param {boolean} matchCase If the the case match is enabled.
      */
-    ext.equals = function (string1, string2) {
+    ext.equals = function (string1, string2, matchCase) {
         if (!string1) string1 = "";
         if (!string2) string2 = "";
         return (string1 === string2);
@@ -304,29 +302,80 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-            ["b", "%s contains word %s", "contains", "I love Scratch", "love"],
-            ["r", "index of %m.findIndex word %s in the sentence %s", "find", "first", "will", "What will you create ?"],
-            ["r", "index of %m.findCharIndex character %s in the word %s", "findChar", "first", "h", "Woohoo!"],
-            ["r", "format %s with %m.formatFomat", "format", "hello", "all uppercase"],
-            ["r", "join %s %s %s with %s", "join", "Hello", "world", "!", "_"],
-            ["r", "reverse %s", "reverse", "Hello there"],
-            ["r", "%s from letter %n to %n", "substring", "Sun is shining", "5", "10"],
-            ["r", "removes spaces %m.trimFormat of %s", "trim", "at the beginning", "      hmmmmm..."],
-            ["r", "replace %m.replaceOption %s in %s by %s", "replace", "all", "a", "Abracadabra", "o"],
-            ["r", "replace the %n th %s in %s by %s", "replacePlace", "3", "very", "What a very very very beautifull day!", "not"],
-            ["r", "repeat %s %n times separated by %s", "repeat", "Hello", "3", "-"],
-            ["b", "%s begins with %s", "startsWith", "Scratchatastic", "Scratch"],
-            ["b", "%s ends with %s", "endsWith", "Is this a question?", "?"],
-            ["b", "%s = %s", "equals", "This sentence", "this sentence"],
-            ["r", "%m.encoding code of %s", "ASCII", "S"]
+            ["b",
+                "%s contains word %s (match case %m.letterCase)",
+                "contains",
+                "I love Scratch", "love"],
+            ["r",
+                "index of %m.findIndex word %s in the sentence %s (match case %m.letterCase)",
+                "find",
+                "first", "will", "What will you create ?"],
+            ["r",
+                "index of %m.findCharIndex character %s in the word %s (match case %m.letterCase)",
+                "findChar",
+                "first", "h", "Woohoo!"],
+            ["r",
+                "format %s with %m.formatFomat",
+                "format",
+                "hello", "all uppercase"],
+            ["r",
+                "join %s %s %s with %s",
+                "join",
+                "Hello", "world", "!", "_"],
+            ["r",
+                "reverse %s",
+                "reverse",
+                "Hello there"],
+            ["r",
+                "%s from letter %n to %n",
+                "substring",
+                "Sun is shining", "5", "10"],
+            ["r",
+                "removes spaces %m.trimFormat of %s",
+                "trim",
+                "at the beginning", "      hmmmmm..."],
+            ["r",
+                "replace %m.replaceOption %s in %s by %s (match case %m.letterCase)",
+                "replace",
+                "all", "a", "Abracadabra", "o"],
+            ["r",
+                "replace the %n th %s in %s by %s (match case %m.letterCase)",
+                "replacePlace",
+                "3", "very", "What a very very very beautifull day!", "not"],
+            ["r",
+                "split %s every %s (match case %m.letterCase)",
+                "split",
+                "Banana", "a"],
+            ["r",
+                "repeat %s %n times separated by %s",
+                "repeat",
+                "Hello", "3", "-"],
+            ["b",
+                "%s begins with %s (match case %m.letterCase)",
+                "startsWith",
+                "Scratchatastic", "Scratch"],
+            ["b",
+                "%s ends with %s (match case %m.letterCase)",
+                "endsWith",
+                "Is this a question?", "?"],
+            ["b",
+                "%s = %s (match case %m.letterCase)",
+                "equals",
+                "This sentence", "this sentence"],
+            ["r",
+                "%m.charToCodeEncoding code of %s",
+                "charToCode",
+                "ASCII", "S"]
         ],
         menus: {
+            letterCase: ["yes", "no"],
+            
             findIndex: ["first", "last"],
             findCharIndex: ["first", "last"],
             formatFomat: ["all uppercase", "all lowercase", "1st uppercase", "1st uppercase, others lowercase"],
             trimFormat: ["at the beginning", "at the end", "both"],
             replaceOption: ["all", "first", "last"],
-            encoding:["ASCII", "Unicode", "UTF-8", "UTF-16", "UTF-32", "ISO-8859", "ISO-8859-1 (Latin1)", ""]
+            charToCodeEncoding:["ASCII", "Unicode", "UTF-8", "UTF-16", "UTF-32", "ISO-8859", "ISO-8859-1 (Latin1)", ""]
         },
         displayName: "Advanced String Operators"
     };

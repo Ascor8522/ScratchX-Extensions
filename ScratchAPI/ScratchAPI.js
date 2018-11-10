@@ -97,6 +97,11 @@
         }
     }
 
+    ext.getProject = function(project, info, callback) {
+        if (!navigator.onLine) callback("No internet connection");
+        if (!project) callback("No project id provided");
+    }
+
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
