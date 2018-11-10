@@ -204,7 +204,7 @@
         if (!after) after = "";
         var regex = new RegExp(before.toString(), "g");
         var counter = 0;
-        return string.replace(regex, function (match, i, original) {
+        return string.replace(regex, function ( match, i, original) {
             counter++;
             return (counter === Number.parseInt(place)) ? after.toString() : match;
         });
@@ -303,15 +303,15 @@
     var descriptor = {
         blocks: [
             ["b",
-                "%s contains word %s (match case %m.letterCase)",
+                "%s contains word %s ( match case %m.letterCase )",
                 "contains",
                 "I love Scratch", "love"],
             ["r",
-                "index of %m.findIndex word %s in the sentence %s (match case %m.letterCase)",
+                "index of %m.findIndex word %s in the sentence %s ( match case %m.letterCase )",
                 "find",
                 "first", "will", "What will you create ?"],
             ["r",
-                "index of %m.findCharIndex character %s in the word %s (match case %m.letterCase)",
+                "index of %m.findCharIndex character %s in the word %s ( match case %m.letterCase )",
                 "findChar",
                 "first", "h", "Woohoo!"],
             ["r",
@@ -335,15 +335,15 @@
                 "trim",
                 "at the beginning", "      hmmmmm..."],
             ["r",
-                "replace %m.replaceOption %s in %s by %s (match case %m.letterCase)",
+                "replace %m.replaceOption %s in %s by %s ( match case %m.letterCase )",
                 "replace",
                 "all", "a", "Abracadabra", "o"],
             ["r",
-                "replace the %n th %s in %s by %s (match case %m.letterCase)",
+                "replace the %n th %s in %s by %s ( match case %m.letterCase )",
                 "replacePlace",
                 "3", "very", "What a very very very beautifull day!", "not"],
             ["r",
-                "split %s every %s (match case %m.letterCase)",
+                "split %s every %s ( match case %m.letterCase )",
                 "split",
                 "Banana", "a"],
             ["r",
@@ -351,15 +351,15 @@
                 "repeat",
                 "Hello", "3", "-"],
             ["b",
-                "%s begins with %s (match case %m.letterCase)",
+                "%s begins with %s ( match case %m.letterCase )",
                 "startsWith",
                 "Scratchatastic", "Scratch"],
             ["b",
-                "%s ends with %s (match case %m.letterCase)",
+                "%s ends with %s ( match case %m.letterCase )",
                 "endsWith",
                 "Is this a question?", "?"],
             ["b",
-                "%s = %s (match case %m.letterCase)",
+                "%s = %s ( match case %m.letterCase )",
                 "equals",
                 "This sentence", "this sentence"],
             ["r",
@@ -369,7 +369,7 @@
         ],
         menus: {
             letterCase: ["yes", "no"],
-            
+
             findIndex: ["first", "last"],
             findCharIndex: ["first", "last"],
             formatFomat: ["all uppercase", "all lowercase", "1st uppercase", "1st uppercase, others lowercase"],
