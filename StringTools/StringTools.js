@@ -21,7 +21,8 @@
     ext.contains = function (sentence, word, matchCase) {
         if (!sentence) sentence = "";
         if (!word || word == "") return false;
-        return sentence.toString().split(" ").includes(word.toString().replace(/^\s+|\s+$/gm, ""));
+        const regex = `/^\s+|\s+$/g${matchCase?"":"i"}m`;
+        return sentence.toString().split(" ").includes(word.toString().replace(regex, ""));
     }
 
     /**
@@ -35,11 +36,12 @@
      * Index begins at 1 and not at 0 (easier for the kids).
      */
     ext.find = function (index, word, sentence, matchCase) {
+        const regex = `/^\s+|\s+$/g${matchCase?"":"i"}m`;
         switch (index) {
             case "first":
-                return sentence.toString().split(" ").includes(word.toString().replace(/^\s+|\s+$/gm, "")) ? sentence.toString().split(" ").indexOf(word.toString().replace(/^\s+|\s+$/gm, "")) + 1 : -1;
+                return sentence.toString().split(" ").includes(word.toString().replace(regex, "")) ? sentence.toString().split(" ").indexOf(word.toString().replace(regex, "")) + 1 : -1;
             case "last":
-                return sentence.toString().split(" ").includes(word.toString().replace(/^\s+|\s+$/gm, "")) ? sentence.toString().split(" ").lastIndexOf(word.toString().replace(/^\s+|\s+$/gm, "")) + 1 : -1;
+                return sentence.toString().split(" ").includes(word.toString().replace(regex, "")) ? sentence.toString().split(" ").lastIndexOf(word.toString().replace(regex, "")) + 1 : -1;
             default:
                 return sentence.toString();
         }
@@ -57,6 +59,10 @@
     ext.findChar = function (index, char, string, matchCase) {
         if (!char || char == "") return -1;
         if (!string || string == "") return -1;
+        if(!matchCase) {
+            char = char.toLowerCase();
+            string = string.toLowerCase();
+        }
         switch (index) {
             case "first":
                 return string.toString().indexOf(char.toString()) > -1 ? string.toString().indexOf(char.toString()) + 1 : -1;
@@ -177,11 +183,12 @@
         if (!string) string = "";
         if (!before) before = "";
         if (!after) after = "";
+        const regex = `/${before.toString()}/g${matchCase?"":"i"}m`;
         switch (option) {
             case "all":
-                return string.toString().split(before.toString()).join(after.toString());
+                return string.toString().split(regex).join(after.toString());
             case "first":
-                return string.toString().replace(before.toString(), after.toString());
+                return string.toString().replace(regex, after.toString());
             case "last":
 
             default:
@@ -202,9 +209,9 @@
         if (!string) string = "";
         if (!before) before = "";
         if (!after) after = "";
-        var regex = new RegExp(before.toString(), "g");
+        const regex = `/${before.toString()}/g${matchCase?"":"i"}m`;
         var counter = 0;
-        return string.replace(regex, function ( match, i, original) {
+        return string.replace(regex, (match, i, original) => {
             counter++;
             return (counter === Number.parseInt(place)) ? after.toString() : match;
         });
@@ -220,6 +227,7 @@
     ext.split = function (string, char, matchCase) {
         if (!string) string = "";
         if (!char) char = "";
+        const regex = `/${char.toString()}/g${matchCase?"":"i"}m`;
         return string.split(char).join(" ");
     }
 
@@ -251,7 +259,8 @@
     ext.startsWith = function (string, pattern, matchCase) {
         if (!string) string = "";
         if (!pattern || pattern == "") return false;
-        return string.toString().startsWith(pattern.toString());
+        const regex = `/${pattern.toString()}/g${matchCase?"":"i"}m`;
+        return string.toString().startsWith(regex);
     }
 
     /**
@@ -263,7 +272,8 @@
     ext.endsWith = function (string, pattern, matchCase) {
         if (!string) string = "";
         if (!pattern || pattern == "") return false;
-        return string.toString().endsWith(pattern.toString());
+        const regex = `/${pattern.toString()}/g${matchCase?"":"i"}m`;
+        return string.toString().endsWith(regex);
     }
 
     /**
@@ -275,7 +285,11 @@
     ext.equals = function (string1, string2, matchCase) {
         if (!string1) string1 = "";
         if (!string2) string2 = "";
-        return (string1 === string2);
+        if(matchCase) {
+            return (new String(string1).valueOf() === new String(string2).valueOf());
+        } else {
+            return (new String(string1.toLowerCase()).valueOf() === new String(string2.toLowerCase()).valueOf());
+        }
     }
 
     /**
@@ -303,17 +317,17 @@
     var descriptor = {
         blocks: [
             ["b",
-                "%s contains word %s ( match case %m.letterCase )",
+                "%s contains word %s (match case %m.letterCase )",
                 "contains",
-                "I love Scratch", "love"],
+                "I love Scratch", "love", "yes"],
             ["r",
-                "index of %m.findIndex word %s in the sentence %s ( match case %m.letterCase )",
+                "index of %m.findIndex word %s in the sentence %s (match case %m.letterCase )",
                 "find",
-                "first", "will", "What will you create ?"],
+                "first", "will", "What will you create ?", "yes"],
             ["r",
-                "index of %m.findCharIndex character %s in the word %s ( match case %m.letterCase )",
+                "index of %m.findCharIndex character %s in the word %s (match case %m.letterCase )",
                 "findChar",
-                "first", "h", "Woohoo!"],
+                "first", "h", "Woohoo!", "yes"],
             ["r",
                 "format %s with %m.formatFomat",
                 "format",
@@ -335,33 +349,33 @@
                 "trim",
                 "at the beginning", "      hmmmmm..."],
             ["r",
-                "replace %m.replaceOption %s in %s by %s ( match case %m.letterCase )",
+                "replace %m.replaceOption %s in %s by %s (match case %m.letterCase )",
                 "replace",
-                "all", "a", "Abracadabra", "o"],
+                "all", "a", "Abracadabra", "o", "yes"],
             ["r",
-                "replace the %n th %s in %s by %s ( match case %m.letterCase )",
+                "replace the %n th %s in %s by %s (match case %m.letterCase )",
                 "replacePlace",
-                "3", "very", "What a very very very beautifull day!", "not"],
+                "3", "very", "What a very very very beautifull day!", "not", "yes"],
             ["r",
-                "split %s every %s ( match case %m.letterCase )",
+                "split %s every %s (match case %m.letterCase )",
                 "split",
-                "Banana", "a"],
+                "Banana", "a", "yes"],
             ["r",
                 "repeat %s %n times separated by %s",
                 "repeat",
                 "Hello", "3", "-"],
             ["b",
-                "%s begins with %s ( match case %m.letterCase )",
+                "%s begins with %s (match case %m.letterCase )",
                 "startsWith",
-                "Scratchatastic", "Scratch"],
+                "Scratchatastic", "Scratch", "yes"],
             ["b",
-                "%s ends with %s ( match case %m.letterCase )",
+                "%s ends with %s (match case %m.letterCase )",
                 "endsWith",
-                "Is this a question?", "?"],
+                "Is this a question?", "?", "yes"],
             ["b",
-                "%s = %s ( match case %m.letterCase )",
+                "%s = %s (match case %m.letterCase )",
                 "equals",
-                "This sentence", "this sentence"],
+                "This sentence", "this sentence", "yes"],
             ["r",
                 "%m.charToCodeEncoding code of %s",
                 "charToCode",
